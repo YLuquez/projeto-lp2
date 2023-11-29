@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -97,6 +98,10 @@ public class InstituicaoGUI extends JFrame {
 		btnLimpar.setBounds(82, 276, 109, 23);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Metodo para apagar todos os campos, substituindo o texto por vazio
+				textFieldCodigoMEC.setText("");
+				textFieldNome.setText("");
+				textFieldAnoFundacao.setText("");
 			}
 		});
 		contentPane.add(btnLimpar);
@@ -104,10 +109,34 @@ public class InstituicaoGUI extends JFrame {
 		JButton btnCadastrar = new JButton("CADASTRAR");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String codigoMEC = textFieldCodigoMEC.getText();
+				String nome = textFieldNome.getText();
+				String anoFundacao = textFieldAnoFundacao.getText();
+
+				if (isNumeric(codigoMEC) && isAlphabetic(nome) && isNumeric(anoFundacao)){
+					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Cadastro realizado com sucesso!");
+				} else {
+					// Se alguma validação falhar, apague os campos incorretos e exiba uma mensagem de erro
+					textFieldCodigoMEC.setText(isNumeric(codigoMEC) ? codigoMEC : "");
+					textFieldNome.setText(isAlphabetic(nome) ? nome : "");
+					textFieldAnoFundacao.setText(isNumeric(anoFundacao) ? anoFundacao : "");
+		
+					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Erro: Verifique os campos e tente novamente.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrar.setBounds(201, 276, 109, 23);
 		contentPane.add(btnCadastrar);
+	}
+
+
+	// Metodos de validação
+	private boolean isNumeric(String str) {
+		return str.matches("\\d+"); // Verifica se a string contém apenas números
+	}
+	
+	private boolean isAlphabetic(String str) {
+		return str.matches("[a-zA-Z]+"); // Verifica se a string contém apenas letras
 	}
 }
