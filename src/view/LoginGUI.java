@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
@@ -73,6 +74,8 @@ public class LoginGUI extends JFrame {
 		btnLimpar.setBounds(82, 166, 109, 23);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textFieldLogin.setText("");
+				passwordField.setText("");
 			}
 		});
 		contentPane.add(btnLimpar);
@@ -80,6 +83,18 @@ public class LoginGUI extends JFrame {
 		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String login = textFieldLogin.getText();
+				String senha = passwordField.getText();
+				
+				if (login.equals("user") && senha.equals("12345")) {
+					InstituicaoGUI telainstituicao = new InstituicaoGUI();
+					telainstituicao.setVisible(true);
+					dispose();
+				}
+				else{
+					JOptionPane.showMessageDialog(LoginGUI.this, "Login e/ou senha incorretos.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+					passwordField.setText("");
+				}
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 11));
