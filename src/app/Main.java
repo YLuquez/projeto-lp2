@@ -1,4 +1,4 @@
-package controller;
+package app;
 
 import view.InstituicaoGUI;
 import view.LoginGUI;

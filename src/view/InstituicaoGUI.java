@@ -23,23 +23,6 @@ public class InstituicaoGUI extends JFrame {
 	private JTextField textFieldCodigoMEC;
 	private JTextField textFieldNome;
 	private JTextField textFieldAnoFundacao;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InstituicaoGUI frame = new InstituicaoGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
