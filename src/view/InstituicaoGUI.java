@@ -78,12 +78,12 @@ public class InstituicaoGUI extends JFrame {
 		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTipo.setBounds(104, 197, 122, 23);
 		contentPane.add(lblTipo);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Educacao Infantil", "Ensino Fundamental", "Ensino Medio", "Educacao Infantil e Ensino Fundamental", "Educacao Infantil e Ensino Fundamental e Medio", "Ensino Fundamental e Medio", "Ensino Superior"}));
+
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Educacao Infantil", "Ensino Fundamental", "Ensino Medio", "Educacao Infantil e Ensino Fundamental", "Educacao Infantil e Ensino Fundamental e Medio", "Ensino Fundamental e Medio", "Ensino Superior"}));
 		comboBox.setBounds(104, 228, 165, 22);
 		contentPane.add(comboBox);
-		
+
 		JButton btnLimpar = new JButton("LIMPAR");
 		btnLimpar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnLimpar.setBounds(82, 276, 109, 23);

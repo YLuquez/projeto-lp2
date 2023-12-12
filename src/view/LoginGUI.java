@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -89,12 +87,12 @@ public class LoginGUI extends JFrame implements LoginListener{
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String login = textFieldLogin.getText();
-				String senha = passwordField.getText();
+				char[] senhaChars = passwordField.getPassword();
+				String senha = new String(senhaChars);
 				// Verifica as credenciais e abre a tela da instituição se o login for bem sucedido
 				if (login.equals("user") && senha.equals("12345")) {
 					onLoginSuccess();
-				}
-				else{
+				} else {
 					// Exibe uma mensagem de erro se o login falhar
 					JOptionPane.showMessageDialog(LoginGUI.this, "Login e/ou senha incorretos.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
 					passwordField.setText("");
