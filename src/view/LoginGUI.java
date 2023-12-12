@@ -31,8 +31,7 @@ public class LoginGUI extends JFrame implements LoginListener{
     }
 
 	@Override
-    public void onLoginSuccess() {
-		LoginGUI loginGUI = new LoginGUI();
+    public void onLoginSuccess(LoginGUI loginGUI) {
     // Quando o login for bem-sucedido, inicia a tela da instituição
         InstituicaoGUI instituicaoGUI = new InstituicaoGUI();
         instituicaoGUI.setVisible(true);
@@ -91,7 +90,7 @@ public class LoginGUI extends JFrame implements LoginListener{
 				String senha = new String(senhaChars);
 				// Verifica as credenciais e abre a tela da instituição se o login for bem sucedido
 				if (login.equals("user") && senha.equals("12345")) {
-					onLoginSuccess();
+					onLoginSuccess(LoginGUI.this);
 				} else {
 					// Exibe uma mensagem de erro se o login falhar
 					JOptionPane.showMessageDialog(LoginGUI.this, "Login e/ou senha incorretos.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
