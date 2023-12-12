@@ -1,9 +1,10 @@
 package app;
 
+import controller.LoginListener;
 import view.InstituicaoGUI;
 import view.LoginGUI;
 
-public class Main {
+public class Main implements LoginListener {
     public static void main(String[] args) {
         // Inicia a tela de login
         LoginGUI loginGUI = new LoginGUI();

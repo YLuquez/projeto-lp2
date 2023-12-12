@@ -1,16 +1,21 @@
 package view;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.instituicao;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +28,7 @@ public class InstituicaoGUI extends JFrame {
 	private JTextField textFieldCodigoMEC;
 	private JTextField textFieldNome;
 	private JTextField textFieldAnoFundacao;
+	private List<instituicao> instituicoes = new ArrayList<>(); 
 	/**
 	 * Create the frame.
 	 */
@@ -98,6 +104,8 @@ public class InstituicaoGUI extends JFrame {
 
 				if (isNumeric(codigoMEC) && isAlphabetic(nome) && isNumeric(anoFundacao)){
 					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Cadastro realizado com sucesso!");
+					instituicoes.add(new instituicao(Integer.parseInt(codigoMEC), nome, Integer.parseInt(anoFundacao)));
+					
 				} else {
 					// Se alguma validação falhar, apague os campos incorretos e exiba uma mensagem de erro
 					textFieldCodigoMEC.setText(isNumeric(codigoMEC) ? codigoMEC : "");
