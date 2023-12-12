@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class LoginGUI extends JFrame {
+public class LoginGUI extends JFrame implements LoginListener{
 
 	private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -31,11 +31,14 @@ public class LoginGUI extends JFrame {
 	 public void addLoginListener(LoginListener listener) {
         loginListeners.add(listener);
     }
-	// Metodo de notificação de login bem sucedido
-	private void notifyLoginSuccess() {
-        for (LoginListener listener : loginListeners) {
-            listener.onLoginSuccess();
-        }
+
+	@Override
+    public void onLoginSuccess() {
+		LoginGUI loginGUI = new LoginGUI();
+    // Quando o login for bem-sucedido, inicia a tela da instituição
+        InstituicaoGUI instituicaoGUI = new InstituicaoGUI();
+        instituicaoGUI.setVisible(true);
+        loginGUI.dispose(); // Fecha a tela de login após o login bem-sucedido
     }
 
 	// Construtor da interface gráfica de login
@@ -89,9 +92,7 @@ public class LoginGUI extends JFrame {
 				String senha = passwordField.getText();
 				// Verifica as credenciais e abre a tela da instituição se o login for bem sucedido
 				if (login.equals("user") && senha.equals("12345")) {
-					InstituicaoGUI telainstituicao = new InstituicaoGUI();
-					telainstituicao.setVisible(true);
-					dispose();
+					onLoginSuccess();
 				}
 				else{
 					// Exibe uma mensagem de erro se o login falhar
