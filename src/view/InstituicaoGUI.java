@@ -4,6 +4,7 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,7 @@ public class InstituicaoGUI extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldAnoFundacao;
 	private List<instituicao> instituicoes = new ArrayList<>(); 
+	private DefaultTableModel tableModel;
 	/**
 	 * Create the frame.
 	 */
@@ -107,6 +109,7 @@ public class InstituicaoGUI extends JFrame {
 				if (isNumeric(codigoMEC) && isAlphabetic(nome) && isNumeric(anoFundacao)){
 					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Cadastro realizado com sucesso!");
 					instituicoes.add(new instituicao(Integer.parseInt(codigoMEC), nome, Integer.parseInt(anoFundacao)));
+					tableModel.addRow(new Object[]{codigoMEC, nome, comboBox.getSelectedItem()});
 					
 				} else {
 					// Se alguma validação falhar, apague os campos incorretos e exiba uma mensagem de erro
@@ -121,35 +124,19 @@ public class InstituicaoGUI extends JFrame {
 		btnCadastrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrar.setBounds(201, 276, 109, 23);
 		contentPane.add(btnCadastrar);
-
-		JTable table = new JTable();
-        table.setModel(new DefaultTableModel(
-            new Object[][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-            },
-            new String[] {
-                "CodigoMEC", "Nome", "Tipo"
-            }
-        ));
-        table.setBounds(31, 350, 320, 63);
-        contentPane.add(table);
-
-        JLabel lblNewLabel = new JLabel("CodigoMEC");
-        lblNewLabel.setBounds(59, 320, 70, 14);
-        contentPane.add(lblNewLabel);
-
-        JLabel lblNewLabel_1 = new JLabel("Nome");
-        lblNewLabel_1.setBounds(170, 320, 70, 14);
-        contentPane.add(lblNewLabel_1);
-
-        JLabel lblNewLabel_2 = new JLabel("Tipo");
-        lblNewLabel_2.setBounds(275, 320, 70, 14);
-        contentPane.add(lblNewLabel_2);
+		
+		// Inicia o construtor da tabela
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("CodigoMEC");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Tipo");
+		
+		JTable table = new JTable(tableModel);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(31, 320, 320, 120);
+		contentPane.add(scrollPane);
 	}
-
+	
 
 	// Metodos de validação
 	private boolean isNumeric(String str) {
