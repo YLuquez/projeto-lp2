@@ -4,7 +4,9 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import model.instituicao;
 
@@ -35,7 +37,7 @@ public class InstituicaoGUI extends JFrame {
 	public InstituicaoGUI() {
 		setTitle("Cadastro de Instituicoes de Ensino");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 400);
+		setBounds(100, 100, 410, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -119,6 +121,33 @@ public class InstituicaoGUI extends JFrame {
 		btnCadastrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrar.setBounds(201, 276, 109, 23);
 		contentPane.add(btnCadastrar);
+
+		JTable table = new JTable();
+        table.setModel(new DefaultTableModel(
+            new Object[][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+            },
+            new String[] {
+                "CodigoMEC", "Nome", "Tipo"
+            }
+        ));
+        table.setBounds(31, 350, 320, 63);
+        contentPane.add(table);
+
+        JLabel lblNewLabel = new JLabel("CodigoMEC");
+        lblNewLabel.setBounds(59, 320, 70, 14);
+        contentPane.add(lblNewLabel);
+
+        JLabel lblNewLabel_1 = new JLabel("Nome");
+        lblNewLabel_1.setBounds(170, 320, 70, 14);
+        contentPane.add(lblNewLabel_1);
+
+        JLabel lblNewLabel_2 = new JLabel("Tipo");
+        lblNewLabel_2.setBounds(275, 320, 70, 14);
+        contentPane.add(lblNewLabel_2);
 	}
 
 
