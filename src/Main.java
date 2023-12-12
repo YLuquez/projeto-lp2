@@ -1,5 +1,3 @@
-
-
 import view.LoginGUI;
 
 public class Main {

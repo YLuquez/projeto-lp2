@@ -1,7 +1,5 @@
 package view;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -106,15 +104,14 @@ public class InstituicaoGUI extends JFrame {
 				String nome = textFieldNome.getText();
 				String anoFundacao = textFieldAnoFundacao.getText();
 
-				if (isNumeric(codigoMEC) && isAlphabetic(nome) && isNumeric(anoFundacao)){
+				if (isNumeric(codigoMEC) && isNumeric(anoFundacao)){
 					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Cadastro realizado com sucesso!");
 					instituicoes.add(new instituicao(Integer.parseInt(codigoMEC), nome, Integer.parseInt(anoFundacao)));
-					tableModel.addRow(new Object[]{codigoMEC, nome, comboBox.getSelectedItem()});
+					tableModel.addRow(new Object[]{codigoMEC, nome,anoFundacao, comboBox.getSelectedItem()});
 					
 				} else {
 					// Se alguma validação falhar, apague os campos incorretos e exiba uma mensagem de erro
 					textFieldCodigoMEC.setText(isNumeric(codigoMEC) ? codigoMEC : "");
-					textFieldNome.setText(isAlphabetic(nome) ? nome : "");
 					textFieldAnoFundacao.setText(isNumeric(anoFundacao) ? anoFundacao : "");
 		
 					JOptionPane.showMessageDialog(InstituicaoGUI.this, "Erro: Verifique os campos e tente novamente.", "Erro!", JOptionPane.INFORMATION_MESSAGE);
@@ -129,6 +126,7 @@ public class InstituicaoGUI extends JFrame {
 		tableModel = new DefaultTableModel();
 		tableModel.addColumn("CodigoMEC");
 		tableModel.addColumn("Nome");
+		tableModel.addColumn("Ano");
 		tableModel.addColumn("Tipo");
 		
 		JTable table = new JTable(tableModel);
@@ -143,7 +141,4 @@ public class InstituicaoGUI extends JFrame {
 		return str.matches("\\d+"); // Verifica se a string contém apenas números
 	}
 	
-	private boolean isAlphabetic(String str) {
-		return str.matches("[a-zA-Z]+"); // Verifica se a string contém apenas letras
-	}
 }
